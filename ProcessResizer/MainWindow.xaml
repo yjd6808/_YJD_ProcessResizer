@@ -1,0 +1,100 @@
+﻿<Window x:Class="ProcessResizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProcessResizer"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        
+        xmlns:ViewModel="clr-namespace:ProcessResizer.ViewModel"
+        xmlns:Model="clr-namespace:ProcessResizer.Model"
+        
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        Title="짱도 리사이저" Height="700" Width="500" FontSize="16">
+
+    <Window.DataContext>
+        <ViewModel:MainWindowViewModel x:Name="_mainWindowViewModel"/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <Model:ResizerProcessCollection x:Key="ResizerProcessCollection" />
+    </Window.Resources>
+
+
+    <StackPanel Margin="6">
+        <Label>프로세스 목록</Label>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <ListView Name="_listViewProccess" Height="200" ItemsSource="{Binding ResizerProcesses}" PreviewMouseLeftButtonDown="ListViewProcess_PreviewMouseLeftButtonDown" SelectionChanged="ListViewProcess_SelectionChanged">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding ProcessName}"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+
+        <Button x:Name="_buttonUpdateProcessList" Margin="0, 10, 0, 0" Click="_buttonUpdateProcessList_Click">목록 업데이트</Button>
+        
+        <Grid Margin="0, 10, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0">선택된 프로세스</TextBlock>
+            <TextBlock Grid.Column="1" x:Name="_textBlockSelectedProcessName">없음</TextBlock>
+        </Grid>
+        <Separator Margin="0, 10, 0, 10"></Separator>
+
+        <TextBlock>너비</TextBlock>
+        <Grid Margin="0, 10, 0, 0" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="_sliderWidth" Minimum="100" Maximum="1920" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" VerticalAlignment="Center" PreviewMouseLeftButtonDown="Slider_MouseLeftButtonDown" ValueChanged="SliderWidth_ValueChanged"/>
+            
+            <Grid Margin="5, 0, 0, 0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="_textBoxWidth" Style="{StaticResource MaterialDesignOutlinedTextBox}" Padding="0" Grid.Column="0" Text="100" VerticalContentAlignment="Center" PreviewTextInput="Numeric_PreviewTextInput" TextChanged="TextBoxWidth_TextChanged"/>
+                <Button x:Name="_buttonApplyWidth" Click="ButtonApplyWidth_Click" Grid.Column="1">적용</Button>
+                <Button x:Name="_buttonMinusWidth" Click="ButtonMinusWidth_Click" Grid.Column="2">-</Button>
+                <Button x:Name="_buttonPlusWidth" Click="ButtonPlusWidth_Click" Grid.Column="3">+</Button>
+            </Grid>
+        </Grid>
+
+        <TextBlock Margin="0, 10, 0, 0">높이</TextBlock>
+
+        <Grid Margin="0, 10, 0, 0" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="_sliderHeight" Minimum="100" Maximum="1080" AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="0" VerticalAlignment="Center" PreviewMouseLeftButtonDown="Slider_MouseLeftButtonDown" ValueChanged="SliderHeight_ValueChanged"/>
+
+            <Grid Margin="5, 0, 0, 0" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="_textBoxHeight" Style="{StaticResource MaterialDesignOutlinedTextBox}" Padding="0" Grid.Column="0" Text="100" VerticalContentAlignment="Center" PreviewTextInput="Numeric_PreviewTextInput" TextChanged="TextBoxHeight_TextChanged"/>
+                <Button x:Name="_buttonApplyHeight" Click="ButtonApplyHeight_Click" Grid.Column="1">적용</Button>
+                <Button x:Name="_buttonMinusHeight" Click="ButtonMinusHeight_Click" Grid.Column="2">-</Button>
+                <Button x:Name="_buttonPlusHeight" Click="ButtonPlusHeight_Click" Grid.Column="3">+</Button>
+            </Grid>
+        </Grid>
+        <TextBox x:Name="_textBoxInformation" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0, 10, 0, 0"  Padding="5" AcceptsReturn="True" IsReadOnly="True" Height="150" Text="만든이 : 윤정도&#x0a;만든이 날짜 : 21-12-04(5시간 동안 만듬)&#x0a;만든이 블로그 : blog.naver.com/wjdeh313&#x0a;사용방법&#x0a;1. 크기를 변경하고 싶은 프로세스 목록에서 프로세스 선택&#x0a;2. 슬라이더로 또는 버튼으로 크기 변경&#x0a;3. 닫기 버튼이 사라진 경우 창을 최소화했다가 활성화해줍니다." VerticalContentAlignment="Top"></TextBox>
+    </StackPanel>
+</Window>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessResizer", "ProcessResizer\ProcessResizer.csproj", "{E53C404E-9AB0-45DD-A109-498AA36EB660}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E53C404E-9AB0-45DD-A109-498AA36EB660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E53C404E-9AB0-45DD-A109-498AA36EB660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E53C404E-9AB0-45DD-A109-498AA36EB660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E53C404E-9AB0-45DD-A109-498AA36EB660}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FAD9028-CCA4-48DA-9B82-A312079CE85D}
+	EndGlobalSection
+EndGlobal
